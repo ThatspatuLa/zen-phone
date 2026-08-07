@@ -214,9 +214,9 @@ class _ProjectSelector extends StatelessWidget {
                 selected: selected == p,
                 onSelected: (_) => onSelect(p),
                 selectedColor: AppTheme.accent.withValues(alpha: 0.2),
-                backgroundColor: AppTheme.bgElevated,
+                backgroundColor: AppTheme.bgTertiary,
                 labelStyle: TextStyle(
-                  color: selected == p ? AppTheme.accent : AppTheme.text,
+                  color: selected == p ? AppTheme.accent : AppTheme.textPrimary,
                   fontWeight: selected == p ? FontWeight.w600 : FontWeight.w400,
                 ),
                 side: BorderSide(color: AppTheme.border, width: 0.5),
@@ -239,16 +239,16 @@ class _EmptyChat extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.chat_bubble_outline, color: AppTheme.textMuted, size: 56),
+            const Icon(Icons.chat_bubble_outline, color: AppTheme.textSecondary, size: 56),
             const SizedBox(height: 16),
             Text(
               'Send a prompt to $project',
-              style: const TextStyle(color: AppTheme.text, fontSize: 16, fontWeight: FontWeight.w600),
+              style: const TextStyle(color: AppTheme.textPrimary, fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 8),
             const Text(
               'Type below or tap the mic to talk.',
-              style: TextStyle(color: AppTheme.textMuted, fontSize: 13),
+              style: TextStyle(color: AppTheme.textSecondary, fontSize: 13),
             ),
           ],
         ),
@@ -292,8 +292,8 @@ class _MessageBubble extends StatelessWidget {
               constraints: const BoxConstraints(maxWidth: 280),
               decoration: BoxDecoration(
                 color: isSystem
-                    ? AppTheme.bgElevated
-                    : (isUser ? AppTheme.accent : AppTheme.bgCard),
+                    ? AppTheme.bgTertiary
+                    : (isUser ? AppTheme.accent : AppTheme.bgSecondary),
                 borderRadius: BorderRadius.only(
                   topLeft: const Radius.circular(14),
                   topRight: const Radius.circular(14),
@@ -305,7 +305,7 @@ class _MessageBubble extends StatelessWidget {
               child: Text(
                 message.text,
                 style: TextStyle(
-                  color: isSystem ? const Color(0xFFef4444) : (isUser ? Colors.black : AppTheme.text),
+                  color: isSystem ? const Color(0xFFef4444) : (isUser ? Colors.black : AppTheme.textPrimary),
                   fontSize: 14,
                   height: 1.4,
                 ),
@@ -336,7 +336,7 @@ class _InputBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.bgElevated,
+        color: AppTheme.bgTertiary,
         border: Border(top: BorderSide(color: AppTheme.border, width: 0.5)),
       ),
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 16),
@@ -348,14 +348,14 @@ class _InputBar extends StatelessWidget {
             IconButton(
               icon: Icon(
                 isListening ? Icons.mic : Icons.mic_none,
-                color: isListening ? AppTheme.accent : AppTheme.textMuted,
+                color: isListening ? AppTheme.accent : AppTheme.textSecondary,
               ),
               onPressed: onMic,
             ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
-                  color: AppTheme.bgCard,
+                  color: AppTheme.bgSecondary,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: TextField(
@@ -364,10 +364,10 @@ class _InputBar extends StatelessWidget {
                   maxLines: 5,
                   textInputAction: TextInputAction.send,
                   onSubmitted: (_) => onSend(),
-                  style: const TextStyle(color: AppTheme.text),
+                  style: const TextStyle(color: AppTheme.textPrimary),
                   decoration: const InputDecoration(
                     hintText: 'Send a prompt',
-                    hintStyle: TextStyle(color: AppTheme.textMuted),
+                    hintStyle: TextStyle(color: AppTheme.textSecondary),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                   ),

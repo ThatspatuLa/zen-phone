@@ -111,7 +111,7 @@ class _SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) => Text(
         text.toUpperCase(),
         style: const TextStyle(
-          color: AppTheme.textMuted,
+          color: AppTheme.textSecondary,
           fontSize: 11,
           letterSpacing: 1.5,
           fontWeight: FontWeight.w600,
@@ -125,7 +125,7 @@ class _EmptyHint extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Text(text, style: const TextStyle(color: AppTheme.textMuted)),
+        child: Text(text, style: const TextStyle(color: AppTheme.textSecondary)),
       );
 }
 
@@ -182,14 +182,14 @@ class _ActivityRow extends StatelessWidget {
           Expanded(
             child: Text(
               item.path,
-              style: const TextStyle(color: AppTheme.text, fontSize: 13),
+              style: const TextStyle(color: AppTheme.textPrimary, fontSize: 13),
               overflow: TextOverflow.ellipsis,
             ),
           ),
           const SizedBox(width: 8),
           Text(
             _ago(item.when),
-            style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+            style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11),
           ),
         ],
       ),
@@ -217,14 +217,14 @@ class _ErrorState extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.cloud_off, color: AppTheme.textMuted, size: 48),
+          const Icon(Icons.cloud_off, color: AppTheme.textSecondary, size: 48),
           const SizedBox(height: 16),
           const Text('Cannot reach desktop',
-              style: TextStyle(color: AppTheme.text, fontSize: 16, fontWeight: FontWeight.w600)),
+              style: TextStyle(color: AppTheme.textPrimary, fontSize: 16, fontWeight: FontWeight.w600)),
           const SizedBox(height: 8),
           Text(error,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: AppTheme.textMuted, fontSize: 12)),
+              style: const TextStyle(color: AppTheme.textSecondary, fontSize: 12)),
           const SizedBox(height: 16),
           ElevatedButton(onPressed: onRetry, child: const Text('Retry')),
         ],

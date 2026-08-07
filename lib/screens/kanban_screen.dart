@@ -82,9 +82,9 @@ class _ProjectSelector extends StatelessWidget {
                 selected: selected == p,
                 onSelected: (_) => onSelect(p),
                 selectedColor: AppTheme.accent.withValues(alpha: 0.2),
-                backgroundColor: AppTheme.bgElevated,
+                backgroundColor: AppTheme.bgTertiary,
                 labelStyle: TextStyle(
-                  color: selected == p ? AppTheme.accent : AppTheme.text,
+                  color: selected == p ? AppTheme.accent : AppTheme.textPrimary,
                   fontWeight: selected == p ? FontWeight.w600 : FontWeight.w400,
                 ),
                 side: BorderSide(color: AppTheme.border, width: 0.5),
@@ -138,7 +138,7 @@ class _KanbanBoardState extends State<_KanbanBoard> {
         if (snap.hasError) {
           return Center(
             child: Text('Error: ${snap.error}',
-                style: const TextStyle(color: AppTheme.textMuted)),
+                style: const TextStyle(color: AppTheme.textSecondary)),
           );
         }
         final tasks = snap.data ?? [];
@@ -180,7 +180,7 @@ class _ColumnView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppTheme.bgElevated,
+        color: AppTheme.bgTertiary,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppTheme.border, width: 0.5),
       ),
@@ -194,7 +194,7 @@ class _ColumnView extends StatelessWidget {
                 Text(
                   column.label,
                   style: const TextStyle(
-                    color: AppTheme.text,
+                    color: AppTheme.textPrimary,
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
                   ),
@@ -203,12 +203,12 @@ class _ColumnView extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: AppTheme.bgCard,
+                    color: AppTheme.bgSecondary,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
                     '${tasks.length}',
-                    style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                    style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11),
                   ),
                 ),
               ],
@@ -220,7 +220,7 @@ class _ColumnView extends StatelessWidget {
                     padding: EdgeInsets.all(12),
                     child: Text(
                       'Empty',
-                      style: TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                      style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                     ),
                   )
                 : ListView.builder(
@@ -246,7 +246,7 @@ class _ColumnView extends StatelessWidget {
   void _showTaskDetail(BuildContext context, KanbanTask task) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.bgElevated,
+      backgroundColor: AppTheme.bgTertiary,
       isScrollControlled: true,
       builder: (ctx) => DraggableScrollableSheet(
         expand: false,
@@ -260,35 +260,35 @@ class _ColumnView extends StatelessWidget {
             children: [
               Text(task.title,
                   style: const TextStyle(
-                      color: AppTheme.text, fontSize: 18, fontWeight: FontWeight.w600)),
+                      color: AppTheme.textPrimary, fontSize: 18, fontWeight: FontWeight.w600)),
               const SizedBox(height: 8),
               Wrap(
                 spacing: 8,
                 children: [
                   _Chip(text: task.priority, color: _priorityColor(task.priority)),
                   _Chip(text: task.status, color: AppTheme.accent),
-                  _Chip(text: 'risk: ${task.risk}', color: AppTheme.textMuted),
+                  _Chip(text: 'risk: ${task.risk}', color: AppTheme.textSecondary),
                 ],
               ),
               if (task.description != null) ...[
                 const SizedBox(height: 16),
                 Text(task.description!,
-                    style: const TextStyle(color: AppTheme.text, fontSize: 14, height: 1.4)),
+                    style: const TextStyle(color: AppTheme.textPrimary, fontSize: 14, height: 1.4)),
               ],
               if (task.why != null && task.why!.isNotEmpty) ...[
                 const SizedBox(height: 16),
                 const Text('Why',
                     style: TextStyle(
-                        color: AppTheme.textMuted, fontSize: 11, letterSpacing: 1.2)),
+                        color: AppTheme.textSecondary, fontSize: 11, letterSpacing: 1.2)),
                 const SizedBox(height: 4),
                 Text(task.why!,
-                    style: const TextStyle(color: AppTheme.text, fontSize: 13, height: 1.4)),
+                    style: const TextStyle(color: AppTheme.textPrimary, fontSize: 13, height: 1.4)),
               ],
               const SizedBox(height: 24),
               if (task.isOpen) ...[
                 const Text('Move to',
                     style: TextStyle(
-                        color: AppTheme.textMuted, fontSize: 11, letterSpacing: 1.2)),
+                        color: AppTheme.textSecondary, fontSize: 11, letterSpacing: 1.2)),
                 const SizedBox(height: 8),
                 Wrap(
                   spacing: 8,
@@ -330,7 +330,7 @@ class _ColumnView extends StatelessWidget {
       case 'medium':
         return const Color(0xFFf59e0b);
       default:
-        return AppTheme.textMuted;
+        return AppTheme.textSecondary;
     }
   }
 }

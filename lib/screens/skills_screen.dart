@@ -48,13 +48,13 @@ class _SkillsScreenState extends State<SkillsScreen> {
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
             child: TextField(
               onChanged: (s) => setState(() => _search = s),
-              style: const TextStyle(color: AppTheme.text),
+              style: const TextStyle(color: AppTheme.textPrimary),
               decoration: const InputDecoration(
                 hintText: 'Search skills',
-                hintStyle: TextStyle(color: AppTheme.textMuted),
-                prefixIcon: Icon(Icons.search, color: AppTheme.textMuted),
+                hintStyle: TextStyle(color: AppTheme.textSecondary),
+                prefixIcon: Icon(Icons.search, color: AppTheme.textSecondary),
                 filled: true,
-                fillColor: AppTheme.bgElevated,
+                fillColor: AppTheme.bgTertiary,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   borderSide: BorderSide.none,
@@ -70,7 +70,7 @@ class _SkillsScreenState extends State<SkillsScreen> {
                   return const Center(child: CircularProgressIndicator());
                 }
                 if (snap.hasError) {
-                  return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textMuted)));
+                  return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textSecondary)));
                 }
                 var skills = snap.data ?? [];
                 if (_search.isNotEmpty) {
@@ -80,7 +80,7 @@ class _SkillsScreenState extends State<SkillsScreen> {
                 // Sort by weekly count descending
                 skills.sort((a, b) => b.weeklyCount.compareTo(a.weeklyCount));
                 if (skills.isEmpty) {
-                  return const Center(child: Text('No skills found', style: TextStyle(color: AppTheme.textMuted)));
+                  return const Center(child: Text('No skills found', style: TextStyle(color: AppTheme.textSecondary)));
                 }
                 return RefreshIndicator(
                   onRefresh: () async => _load(),
@@ -110,7 +110,7 @@ class _SkillRow extends StatelessWidget {
       case 'expert':
         return const Color(0xFF10b981);
       case 'reference':
-        return AppTheme.textMuted;
+        return AppTheme.textSecondary;
       default:
         return const Color(0xFF3b82f6);
     }
@@ -119,7 +119,7 @@ class _SkillRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(skill.name, style: const TextStyle(color: AppTheme.text, fontWeight: FontWeight.w600)),
+      title: Text(skill.name, style: const TextStyle(color: AppTheme.textPrimary, fontWeight: FontWeight.w600)),
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 4),
         child: Row(
@@ -138,7 +138,7 @@ class _SkillRow extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               skill.lastUsed == null ? 'never used' : 'last: ${_ago(skill.lastUsed!)}',
-              style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+              style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11),
             ),
             const SizedBox(width: 8),
             Text(
@@ -148,11 +148,11 @@ class _SkillRow extends StatelessWidget {
           ],
         ),
       ),
-      trailing: const Icon(Icons.chevron_right, color: AppTheme.textMuted),
+      trailing: const Icon(Icons.chevron_right, color: AppTheme.textSecondary),
       onTap: () {
         showModalBottomSheet(
           context: context,
-          backgroundColor: AppTheme.bgElevated,
+          backgroundColor: AppTheme.bgTertiary,
           isScrollControlled: true,
           builder: (ctx) => DraggableScrollableSheet(
             expand: false,
@@ -164,22 +164,22 @@ class _SkillRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(skill.name,
-                      style: const TextStyle(color: AppTheme.text, fontSize: 18, fontWeight: FontWeight.w600)),
+                      style: const TextStyle(color: AppTheme.textPrimary, fontSize: 18, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 6),
                   Text(
                     'level: ${skill.level} · last used: ${skill.lastUsed == null ? "never" : _ago(skill.lastUsed!)} · ${skill.weeklyCount}/wk · ${skill.totalCount} total',
-                    style: const TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                    style: const TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                   ),
                   const SizedBox(height: 16),
                   if (skill.description != null)
                     Text(
                       skill.description!,
-                      style: const TextStyle(color: AppTheme.text, fontSize: 13, height: 1.4),
+                      style: const TextStyle(color: AppTheme.textPrimary, fontSize: 13, height: 1.4),
                     ),
                   const SizedBox(height: 16),
                   const Text(
                     'Full content available on desktop only.',
-                    style: TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 11),
                   ),
                 ],
               ),

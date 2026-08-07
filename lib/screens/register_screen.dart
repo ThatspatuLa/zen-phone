@@ -15,7 +15,7 @@ class RegisterScreen extends StatelessWidget {
           padding: EdgeInsets.all(32),
           child: Text(
             'Register — not in v1.',
-            style: TextStyle(color: AppTheme.textMuted, fontSize: 14),
+            style: TextStyle(color: AppTheme.textSecondary, fontSize: 14),
           ),
         ),
       ),

@@ -57,11 +57,11 @@ class _MemoryScreenState extends State<MemoryScreen> {
         child: Column(
           children: [
             Container(
-              color: AppTheme.bg,
+              color: AppTheme.bgPrimary,
               child: const TabBar(
                 indicatorColor: AppTheme.accent,
-                labelColor: AppTheme.text,
-                unselectedLabelColor: AppTheme.textMuted,
+                labelColor: AppTheme.textPrimary,
+                unselectedLabelColor: AppTheme.textSecondary,
                 tabs: [
                   Tab(icon: Icon(Icons.folder), text: 'Vault'),
                   Tab(icon: Icon(Icons.timeline), text: 'Activity'),
@@ -109,7 +109,7 @@ class _VaultTab extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (snap.hasError) {
-          return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textMuted)));
+          return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textSecondary)));
         }
         var items = snap.data ?? [];
         // Filter by current path prefix
@@ -122,14 +122,14 @@ class _VaultTab extends StatelessWidget {
           return a.name.toLowerCase().compareTo(b.name.toLowerCase());
         });
         if (items.isEmpty) {
-          return const Center(child: Text('Empty directory', style: TextStyle(color: AppTheme.textMuted)));
+          return const Center(child: Text('Empty directory', style: TextStyle(color: AppTheme.textSecondary)));
         }
         return Column(
           children: [
             if (path.isNotEmpty)
               ListTile(
-                leading: const Icon(Icons.arrow_upward, color: AppTheme.textMuted),
-                title: const Text('..', style: TextStyle(color: AppTheme.text)),
+                leading: const Icon(Icons.arrow_upward, color: AppTheme.textSecondary),
+                title: const Text('..', style: TextStyle(color: AppTheme.textPrimary)),
                 onTap: () {
                   final parts = path.split('/');
                   parts.removeLast();
@@ -146,13 +146,13 @@ class _VaultTab extends StatelessWidget {
                     return ListTile(
                       leading: Icon(
                         n.isDirectory ? Icons.folder : Icons.description,
-                        color: n.isDirectory ? AppTheme.accent : AppTheme.textMuted,
+                        color: n.isDirectory ? AppTheme.accent : AppTheme.textSecondary,
                       ),
-                      title: Text(n.name, style: const TextStyle(color: AppTheme.text)),
+                      title: Text(n.name, style: const TextStyle(color: AppTheme.textPrimary)),
                       subtitle: n.modified != null
-                          ? Text(_iso(n.modified!), style: const TextStyle(color: AppTheme.textMuted, fontSize: 11))
+                          ? Text(_iso(n.modified!), style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11))
                           : null,
-                      trailing: const Icon(Icons.chevron_right, color: AppTheme.textMuted),
+                      trailing: const Icon(Icons.chevron_right, color: AppTheme.textSecondary),
                       onTap: () {
                         if (n.isDirectory) {
                           onNavigate(n.path);
@@ -175,7 +175,7 @@ class _VaultTab extends StatelessWidget {
     final api = context.read<AppState>().api;
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.bgElevated,
+      backgroundColor: AppTheme.bgTertiary,
       isScrollControlled: true,
       builder: (ctx) => DraggableScrollableSheet(
         expand: false,
@@ -189,25 +189,25 @@ class _VaultTab extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(node.name,
-                      style: const TextStyle(color: AppTheme.text, fontSize: 16, fontWeight: FontWeight.w600)),
+                      style: const TextStyle(color: AppTheme.textPrimary, fontSize: 16, fontWeight: FontWeight.w600)),
                   const SizedBox(height: 4),
-                  Text(node.path, style: const TextStyle(color: AppTheme.textMuted, fontSize: 11)),
+                  Text(node.path, style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
                   const SizedBox(height: 12),
                   Expanded(
                     child: snap.connectionState == ConnectionState.waiting
                         ? const Center(child: CircularProgressIndicator())
                         : snap.hasError
-                            ? Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textMuted))
+                            ? Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textSecondary))
                             : Markdown(
                                 data: snap.data ?? '',
                                 styleSheet: MarkdownStyleSheet.fromTheme(Theme.of(context)).copyWith(
-                                      p: const TextStyle(color: AppTheme.text, fontSize: 13, height: 1.4),
-                                      h1: const TextStyle(color: AppTheme.text, fontSize: 20, fontWeight: FontWeight.w600),
-                                      h2: const TextStyle(color: AppTheme.text, fontSize: 17, fontWeight: FontWeight.w600),
-                                      h3: const TextStyle(color: AppTheme.text, fontSize: 15, fontWeight: FontWeight.w600),
+                                      p: const TextStyle(color: AppTheme.textPrimary, fontSize: 13, height: 1.4),
+                                      h1: const TextStyle(color: AppTheme.textPrimary, fontSize: 20, fontWeight: FontWeight.w600),
+                                      h2: const TextStyle(color: AppTheme.textPrimary, fontSize: 17, fontWeight: FontWeight.w600),
+                                      h3: const TextStyle(color: AppTheme.textPrimary, fontSize: 15, fontWeight: FontWeight.w600),
                                       code: const TextStyle(color: AppTheme.accent, fontSize: 12),
                                       codeblockDecoration: BoxDecoration(
-                                        color: AppTheme.bg,
+                                        color: AppTheme.bgPrimary,
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                     ),
@@ -245,11 +245,11 @@ class _ActivityTab extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (snap.hasError) {
-            return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textMuted)));
+            return Center(child: Text('Error: ${snap.error}', style: const TextStyle(color: AppTheme.textSecondary)));
           }
           final items = snap.data ?? [];
           if (items.isEmpty) {
-            return const Center(child: Text('No activity', style: TextStyle(color: AppTheme.textMuted)));
+            return const Center(child: Text('No activity', style: TextStyle(color: AppTheme.textSecondary)));
           }
           return ListView.separated(
             itemCount: items.length,
@@ -259,11 +259,11 @@ class _ActivityTab extends StatelessWidget {
               return ListTile(
                 leading: Icon(
                   a.kind == 'created' ? Icons.add_circle : Icons.edit,
-                  color: a.kind == 'created' ? AppTheme.accent : AppTheme.textMuted,
+                  color: a.kind == 'created' ? AppTheme.accent : AppTheme.textSecondary,
                   size: 18,
                 ),
-                title: Text(a.path, style: const TextStyle(color: AppTheme.text, fontSize: 13)),
-                subtitle: Text(_relative(a.when), style: const TextStyle(color: AppTheme.textMuted, fontSize: 11)),
+                title: Text(a.path, style: const TextStyle(color: AppTheme.textPrimary, fontSize: 13)),
+                subtitle: Text(_relative(a.when), style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11)),
               );
             },
           );

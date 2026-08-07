@@ -15,14 +15,14 @@ class KanbanCard extends StatelessWidget {
       case 'medium':
         return const Color(0xFFf59e0b);
       default:
-        return AppTheme.textMuted;
+        return AppTheme.textSecondary;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppTheme.bgCard,
+      color: AppTheme.bgSecondary,
       borderRadius: BorderRadius.circular(10),
       child: InkWell(
         onTap: onTap,
@@ -52,7 +52,7 @@ class KanbanCard extends StatelessWidget {
                     child: Text(
                       task.title,
                       style: const TextStyle(
-                        color: AppTheme.text,
+                        color: AppTheme.textPrimary,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -66,7 +66,7 @@ class KanbanCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   task.description!,
-                  style: const TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                  style: const TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -77,7 +77,7 @@ class KanbanCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     decoration: BoxDecoration(
-                      color: AppTheme.bg,
+                      color: AppTheme.bgPrimary,
                       borderRadius: BorderRadius.circular(4),
                     ),
                     child: Text(
@@ -93,7 +93,7 @@ class KanbanCard extends StatelessWidget {
                   if (task.lastActive != null)
                     Text(
                       task.lastActive!,
-                      style: const TextStyle(color: AppTheme.textMuted, fontSize: 10),
+                      style: const TextStyle(color: AppTheme.textSecondary, fontSize: 10),
                     ),
                 ],
               ),

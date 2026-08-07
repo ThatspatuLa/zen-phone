@@ -18,7 +18,7 @@ class ProjectGridCard extends StatelessWidget {
     final hasOpen = project.hasOpenTasks;
 
     return Material(
-      color: AppTheme.bgCard,
+      color: AppTheme.bgSecondary,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: onTap,
@@ -39,7 +39,7 @@ class ProjectGridCard extends StatelessWidget {
                     width: 8,
                     height: 8,
                     decoration: BoxDecoration(
-                      color: project.hasSession ? Color(color) : AppTheme.textMuted,
+                      color: project.hasSession ? Color(color) : AppTheme.textSecondary,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -48,7 +48,7 @@ class ProjectGridCard extends StatelessWidget {
                     child: Text(
                       project.label,
                       style: const TextStyle(
-                        color: AppTheme.text,
+                        color: AppTheme.textPrimary,
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                       ),
@@ -62,7 +62,7 @@ class ProjectGridCard extends StatelessWidget {
                 Text(
                   project.nextAction ?? 'In progress',
                   style: const TextStyle(
-                    color: AppTheme.text,
+                    color: AppTheme.textPrimary,
                     fontSize: 13,
                     height: 1.3,
                   ),
@@ -72,12 +72,12 @@ class ProjectGridCard extends StatelessWidget {
               else
                 const Text(
                   'No open tasks',
-                  style: TextStyle(color: AppTheme.textMuted, fontSize: 13),
+                  style: TextStyle(color: AppTheme.textSecondary, fontSize: 13),
                 ),
               const SizedBox(height: 12),
               Row(
                 children: [
-                  _Stat(badge: '${project.backlogCount}', label: 'back', color: AppTheme.textMuted),
+                  _Stat(badge: '${project.backlogCount}', label: 'back', color: AppTheme.textSecondary),
                   const SizedBox(width: 8),
                   _Stat(badge: '${project.inProgressCount}', label: 'ip', color: AppTheme.accent),
                   if (project.blockedCount > 0) ...[
@@ -87,7 +87,7 @@ class ProjectGridCard extends StatelessWidget {
                   const Spacer(),
                   Text(
                     lastActiveText,
-                    style: const TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                    style: const TextStyle(color: AppTheme.textSecondary, fontSize: 11),
                   ),
                 ],
               ),

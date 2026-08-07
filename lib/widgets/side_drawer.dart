@@ -57,7 +57,7 @@ class SideDrawer extends StatelessWidget {
               child: Text(
                 'PROJECTS',
                 style: TextStyle(
-                  color: AppTheme.textMuted,
+                  color: AppTheme.textSecondary,
                   fontSize: 11,
                   letterSpacing: 1.5,
                   fontWeight: FontWeight.w600,
@@ -79,8 +79,8 @@ class SideDrawer extends StatelessWidget {
             ),
             const Divider(height: 1, color: AppTheme.border),
             ListTile(
-              leading: const Icon(Icons.settings, color: AppTheme.textMuted),
-              title: const Text('Settings', style: TextStyle(color: AppTheme.text)),
+              leading: const Icon(Icons.settings, color: AppTheme.textSecondary),
+              title: const Text('Settings', style: TextStyle(color: AppTheme.textPrimary)),
               onTap: () {
                 Navigator.of(context).pop();
                 onNavigate('settings');
@@ -124,12 +124,12 @@ class _DrawerRow extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Icon(item.icon, size: 20, color: isSelected ? AppTheme.accent : AppTheme.textMuted),
+              Icon(item.icon, size: 20, color: isSelected ? AppTheme.accent : AppTheme.textSecondary),
               const SizedBox(width: 14),
               Text(
                 item.label,
                 style: TextStyle(
-                  color: isSelected ? AppTheme.text : AppTheme.textMuted,
+                  color: isSelected ? AppTheme.textPrimary : AppTheme.textSecondary,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 ),
               ),
@@ -174,7 +174,7 @@ class _ProjectRow extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  color: isActive ? AppTheme.text : AppTheme.textMuted,
+                  color: isActive ? AppTheme.textPrimary : AppTheme.textSecondary,
                   fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
                 ),
               ),

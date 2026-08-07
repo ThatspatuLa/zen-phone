@@ -49,15 +49,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   const Text(
                     'Backend URL',
-                    style: TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
                   TextField(
                     controller: _urlCtrl,
-                    style: const TextStyle(color: AppTheme.text),
+                    style: const TextStyle(color: AppTheme.textPrimary),
                     decoration: const InputDecoration(
                       hintText: 'http://100.126.122.39:8765',
-                      hintStyle: TextStyle(color: AppTheme.textMuted),
+                      hintStyle: TextStyle(color: AppTheme.textSecondary),
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -88,7 +88,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   const Text(
                     'Operator pairing code',
-                    style: TextStyle(color: AppTheme.textMuted, fontSize: 12),
+                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 12),
                   ),
                   const SizedBox(height: 8),
                   const Text(
@@ -103,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 8),
                   const Text(
                     'Expires 2026-08-07T03:40:34Z',
-                    style: TextStyle(color: AppTheme.textMuted, fontSize: 11),
+                    style: TextStyle(color: AppTheme.textSecondary, fontSize: 11),
                   ),
                 ],
               ),
@@ -116,18 +116,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Column(
               children: [
                 ListTile(
-                  title: const Text('Version', style: TextStyle(color: AppTheme.text)),
-                  trailing: const Text('1.0.0+1', style: TextStyle(color: AppTheme.textMuted)),
+                  title: const Text('Version', style: TextStyle(color: AppTheme.textPrimary)),
+                  trailing: const Text('1.0.0+1', style: TextStyle(color: AppTheme.textSecondary)),
                 ),
                 const Divider(height: 1, color: AppTheme.border),
                 ListTile(
-                  title: const Text('Backend', style: TextStyle(color: AppTheme.text)),
-                  trailing: const Text('agent_os_server.py', style: TextStyle(color: AppTheme.textMuted)),
+                  title: const Text('Backend', style: TextStyle(color: AppTheme.textPrimary)),
+                  trailing: const Text('agent_os_server.py', style: TextStyle(color: AppTheme.textSecondary)),
                 ),
                 const Divider(height: 1, color: AppTheme.border),
                 ListTile(
-                  title: const Text('Tailscale mesh', style: TextStyle(color: AppTheme.text)),
-                  trailing: const Text('100.126.122.39:8765', style: TextStyle(color: AppTheme.textMuted)),
+                  title: const Text('Tailscale mesh', style: TextStyle(color: AppTheme.textPrimary)),
+                  trailing: const Text('100.126.122.39:8765', style: TextStyle(color: AppTheme.textSecondary)),
                 ),
               ],
             ),
@@ -145,7 +145,7 @@ class _SectionHeader extends StatelessWidget {
   Widget build(BuildContext context) => Text(
         text.toUpperCase(),
         style: const TextStyle(
-          color: AppTheme.textMuted,
+          color: AppTheme.textSecondary,
           fontSize: 11,
           letterSpacing: 1.5,
           fontWeight: FontWeight.w600,
